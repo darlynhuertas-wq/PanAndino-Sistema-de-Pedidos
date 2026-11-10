@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fffaf4">
+  <meta name="description" content="PanAndino - Tortas artesanales hechas con cariño y por encargo.">
+  <title>PanAndino | Momentos que saben mejor</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+  <div class="announcement">♡ Hecho artesanalmente en Arequipa <span>·</span> Reserva tu fecha y disfruta cada ocasión</div>
+  <header class="site-header">
+    <div class="container nav-bar">
+      <button class="brand" data-nav="catalogo" aria-label="Ir al catálogo"><span class="brand-mark">✳</span><span>Pan<span class="brand-emphasis">Andino</span><small>PASTELERÍA ARTESANAL</small></span></button>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <button class="nav-link active" data-nav="catalogo">Nuestras tortas</button>
+        <button class="nav-link" data-nav="pedidos">Mis pedidos</button>
+        <button class="nav-link" data-nav="admin">Administración</button>
+      </nav>
+      <button class="cart-toggle" id="openCart" aria-label="Abrir carrito"><span>🛍</span><span class="cart-label">Mi carrito</span><span class="cart-count" id="cartCount">0</span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="screen active" id="screen-catalogo">
+      <div class="hero-shell">
+        <div class="container hero">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="sparkle">✷</span> REPOSTERÍA HECHA CON AMOR</div>
+            <h1>Endulzamos tus<br><em>momentos</em><span class="hero-dot">.</span></h1>
+            <p>Una celebración especial merece una torta inolvidable. Elige tu favorita, reserva la fecha y nosotros ponemos la magia.</p>
+            <button class="btn btn-dark" id="goCatalog">Explorar nuestras tortas <span>↗</span></button>
+            <div class="hero-trust"><span>✦ Ingredientes frescos</span><span>✦ Hechas a pedido</span><span>✦ Con mucho cariño</span></div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="hero-circle"></div><div class="hero-ring"></div><div class="hero-orbit hero-orbit-1">✳</div><div class="hero-orbit hero-orbit-2">✦</div>
+            <div class="cake-hero"><span class="cake-top">🍒</span><div class="cake-layer cake-layer-top"><div class="icing-drips"></div></div><div class="cake-layer cake-layer-bottom"></div><div class="cake-board"></div></div>
+            <div class="floating-note note-top">Hecho con <span>♥</span><small>para ti</small></div>
+            <div class="floating-note note-bottom"><span>✧</span> 100% artesanal</div>
+          </div>
+        </div>
+      </div>
+
+      <section class="container catalog-section" id="catalog-section">
+        <div class="section-heading"><div><div class="eyebrow eyebrow-sm">ELIGE TU FAVORITA</div><h2>Un antojo para <em>cada ocasión</em></h2><p>Recetas artesanales, sabores únicos y disponibilidad para tu día especial.</p></div><div class="date-card"><label for="dateCatalog">📅 Fecha de entrega</label><input id="dateCatalog" type="date" required><small>Disponibilidad actualizada por día</small></div></div>
+        <div class="catalog-grid" id="productGrid"><div class="loading-card">Preparando las tortas…</div></div>
+      </section>
+      <div class="bottom-banner"><div class="container banner-inner"><span class="banner-icon">✷</span><div><strong>Los buenos momentos se comparten.</strong><span>Pedidos por encargo, fresquitos y hechos especialmente para ti.</span></div><button class="btn btn-light" id="bannerCart">Hacer mi pedido →</button></div></div>
+    </section>
+
+    <section class="screen" id="screen-pedidos">
+      <div class="page-top container"><div class="eyebrow">TUS MOMENTOS ESPECIALES</div><h1>Consulta <em>tu pedido</em></h1><p>Sigue el proceso de tu torta, desde que la registramos hasta que está entregada.</p></div>
+      <div class="container narrow-content"><div class="surface-card tracking-box"><div class="card-symbol">📦</div><h2>¿Cómo va tu torta?</h2><p>Ingresa el código que recibiste al confirmar tu compra y el mismo correo de tu pedido.</p><form id="trackingForm" class="form-stack"><label>Código de pedido<input id="trackingCode" placeholder="Ej. PA-261110-ABC123" required autocomplete="off"></label><label>Correo electrónico<input id="trackingEmail" type="email" placeholder="tu@correo.com" required></label><button class="btn btn-dark btn-full" type="submit">Consultar mi pedido →</button></form><div id="trackingResult" class="tracking-result" aria-live="polite"></div></div></div>
+    </section>
+
+    <section class="screen" id="screen-admin">
+      <div class="page-top container"><div class="eyebrow">PANEL DE LA DUEÑA</div><h1>Control de <em>pedidos</em></h1><p>Revisa tus encargos y actualiza su estado fácilmente.</p></div>
+      <div class="container admin-area"><div class="surface-card admin-login" id="adminLogin"><div class="card-symbol">🔐</div><h2>Acceso de administración</h2><p>Esta sección permite gestionar los pedidos de la pastelería.</p><form id="adminLoginForm" class="form-stack"><label>Contraseña<input id="adminPin" type="password" placeholder="Ingresa la contraseña" required autocomplete="current-password"></label><button class="btn btn-dark btn-full" type="submit">Entrar al panel →</button></form><div class="form-hint">Para la demostración: <strong>1234</strong>. Cambia esta clave antes de usar el proyecto fuera de tu PC.</div></div><div id="adminDashboard" hidden><div class="dashboard-actions"><div class="dashboard-stats"><div class="stat"><small>Total de pedidos</small><strong id="statTotal">0</strong></div><div class="stat"><small>En preparación</small><strong id="statPreparacion">0</strong></div><div class="stat"><small>Entregados</small><strong id="statEntregados">0</strong></div></div><div class="dashboard-btns"><button class="btn btn-outline" id="refreshAdmin">↻ Actualizar</button><button class="btn btn-quiet" id="logoutAdmin">Cerrar sesión</button></div></div><div class="admin-list" id="adminOrders"></div></div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-inner"><div class="footer-brand"><strong><span>✳</span> PanAndino</strong><small>Hecho con cariño para tus mejores momentos.</small></div><span>© <span id="year"></span> PanAndino · Proyecto académico demostrativo</span></div></footer>
+
+  <div class="overlay" id="overlay" hidden></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-labelledby="cartTitle" aria-modal="true" role="dialog" hidden>
+    <div class="drawer-head"><div><small>TU SELECCIÓN ESPECIAL</small><h2 id="cartTitle">Mi carrito <span>♡</span></h2></div><button class="icon-btn" id="closeCart" aria-label="Cerrar carrito">✕</button></div>
+    <div class="cart-body" id="cartBody"></div>
+    <div class="cart-footer"><div class="cart-sum"><span>Total estimado</span><strong id="cartTotal">S/ 0.00</strong></div><button class="btn btn-dark btn-full" id="toCheckout">Continuar con mi pedido →</button><small>El pedido queda registrado sin pago en línea.</small></div>
+  </aside>
+
+  <div class="modal-backdrop" id="checkoutOverlay" hidden><div class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle"><button class="icon-btn modal-close" id="closeCheckout" aria-label="Cerrar">✕</button><div id="checkoutFormArea"><div class="eyebrow eyebrow-sm">ESTÁS A UN PASO</div><h2 id="checkoutTitle">Confirmar <em>mi pedido</em></h2><p class="modal-subtitle">Completa tus datos y guardaremos tu reserva para la fecha seleccionada.</p><div class="checkout-summary" id="checkoutSummary"></div><form id="checkoutForm" class="form-stack"><div class="fields-two"><label>Nombre completo<input id="customerName" maxlength="90" required placeholder="Tu nombre"></label><label>Teléfono<input id="customerPhone" maxlength="25" required placeholder="987 654 321"></label></div><label>Correo electrónico<input id="customerEmail" type="email" maxlength="120" required placeholder="tu@correo.com"></label><label>Fecha de entrega<input id="checkoutDate" type="date" required></label><button class="btn btn-dark btn-full" type="submit" id="submitOrder">Confirmar pedido · <span id="checkoutTotal">S/ 0.00</span></button></form></div><div id="checkoutSuccess" hidden><div class="success-icon">✓</div><h2>¡Tu torta está <em>en camino!</em></h2><p>Hemos registrado tu pedido. Guarda este código para consultar su estado.</p><div class="order-code"><span id="confirmedCode"></span><button class="copy-button" id="copyCode">Copiar</button></div><div class="success-details" id="confirmedDetails"></div><button class="btn btn-dark btn-full" id="goTrack">Ver estado de mi pedido →</button></div></div></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/static/js/app.js" defer></script>
+</body>
+</html>
